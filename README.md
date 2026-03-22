@@ -61,10 +61,12 @@ Default config:
 }
 ```
 
-Detailed key reference: [config.md](./config.md)  
-Developer docs: [DEVELOPMENT.md](./DEVELOPMENT.md)
+Detailed key reference: [config.md](./addon/config.md)  
+Developer docs: [DEVELOPMENT.md](./addon/DEVELOPMENT.md)
 
 ## Repository Notes
 
+- Add-on source lives in [`addon/`](./addon).
+- Unit tests live in [`tests/`](./tests).
 - The repository does not track built release archives (`*.ankiaddon`).
-- Build and publish `.ankiaddon` files via GitHub Releases or AnkiWeb.
+- Build `.ankiaddon` from the contents of `addon/`, then publish via GitHub Releases or AnkiWeb.
