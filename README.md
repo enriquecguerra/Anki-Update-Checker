@@ -2,6 +2,8 @@
 
 Update Checker compares your installed Anki Desktop version with the latest official stable release.
 
+AnkiWeb page: https://ankiweb.net/shared/info/323305297
+
 ## Highlights
 
 - Tools submenu: `Tools -> Update Checker`
@@ -62,3 +64,8 @@ Default config:
 
 Detailed key reference: [config.md](./config.md)  
 Developer docs: [DEVELOPMENT.md](./DEVELOPMENT.md)
+
+## Repository Notes
+
+- The repository does not track built release archives (`*.ankiaddon`).
+- Build and publish `.ankiaddon` files via GitHub Releases or AnkiWeb.
