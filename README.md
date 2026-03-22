@@ -1,0 +1,64 @@
+# Update Checker
+
+Update Checker compares your installed Anki Desktop version with the latest official stable release.
+
+## Highlights
+
+- Tools submenu: `Tools -> Update Checker`
+- Manual action: `Check for Updates`
+- Settings action: `Change Configuration`
+- Startup checks with configurable interval
+- Native `Upgrade/Downgrade` prompt when available
+- Official download page fallback when native upgrade path is unavailable
+
+## Compatibility
+
+- Anki Desktop `24.04+`
+- Python `3.9+`
+- Windows, macOS, Linux
+
+## Usage
+
+1. Install the add-on.
+2. Restart Anki.
+3. Open `Tools -> Update Checker`.
+4. Choose one:
+- `Check for Updates` to run an immediate check.
+- `Change Configuration` to update behavior.
+
+## Configuration UI
+
+The `Change Configuration` dialog lets you set:
+
+- `Automatic checks` on profile open
+- `Check interval`:
+- `Startup` (default)
+- `Every day`
+- `Every 7 days`
+- `Every 30 days`
+- `Custom...` (`5m`, `5h`, `5d`, `startup`, `never`, or numeric days like `2`)
+- `Download page URL`
+
+## Runtime Behavior
+
+- Startup check errors are silent.
+- Manual check errors are shown.
+- Manual checks show an explicit “up to date” message when no update is found.
+- Only stable releases are considered.
+
+## Config File
+
+Default config:
+
+```json
+{
+  "check_on_startup": true,
+  "check_interval": "startup",
+  "download_page_url": "https://apps.ankiweb.net/",
+  "_last_check_ts": 0,
+  "_last_known_latest": ""
+}
+```
+
+Detailed key reference: [config.md](./config.md)  
+Developer docs: [DEVELOPMENT.md](./DEVELOPMENT.md)

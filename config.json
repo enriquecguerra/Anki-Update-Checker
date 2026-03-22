@@ -1,0 +1,7 @@
+{
+  "check_on_startup": true,
+  "check_interval": "startup",
+  "download_page_url": "https://apps.ankiweb.net/",
+  "_last_check_ts": 0,
+  "_last_known_latest": ""
+}

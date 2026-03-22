@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Update Checker Config",
+  "type": "object",
+  "properties": {
+    "check_on_startup": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable automatic checks on profile open."
+    },
+    "check_interval": {
+      "description": "Auto-check interval: startup|never|<N><s|m|h|d>|number (days).",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "default": "startup"
+    },
+    "download_page_url": {
+      "type": "string",
+      "default": "https://apps.ankiweb.net/",
+      "description": "Official download page URL."
+    },
+    "_last_check_ts": {
+      "type": "integer",
+      "default": 0,
+      "description": "Internal state: unix timestamp of last successful check."
+    },
+    "_last_known_latest": {
+      "type": "string",
+      "default": "",
+      "description": "Internal state: last observed upstream version tag."
+    }
+  },
+  "additionalProperties": true
+}
