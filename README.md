@@ -64,9 +64,4 @@ Default config:
 Detailed key reference: [config.md](./addon/config.md)  
 Developer docs: [DEVELOPMENT.md](./addon/DEVELOPMENT.md)
 
-## Repository Notes
-
-- Add-on source lives in [`addon/`](./addon).
-- Unit tests live in [`tests/`](./tests).
-- The repository does not track built release archives (`*.ankiaddon`).
-- Build `.ankiaddon` from the contents of `addon/`, then publish via GitHub Releases or AnkiWeb.
+This project was made by Enrique C. Guerra with support by GPT-5.3-Codex
