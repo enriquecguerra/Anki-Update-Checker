@@ -24,9 +24,8 @@ AnkiWeb page: https://ankiweb.net/shared/info/323305297
 1. Install the add-on.
 2. Restart Anki.
 3. Open `Tools -> Update Checker`.
-4. Choose one:
-- `Check for Updates` to run an immediate check.
-- `Change Configuration` to update behavior.
+4. Use `Check for Updates` to run an immediate check.
+5. Use `Change Configuration` to update behavior.
 
 ## Configuration UI
 

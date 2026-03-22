@@ -191,6 +191,22 @@ def _normalize_interval_input(value: str) -> Optional[Any]:
     return numeric
 
 
+def _resolve_interval_for_save(
+    check_on_startup_enabled: bool,
+    selected_value: Any,
+    custom_text: str,
+    existing_interval: Any,
+) -> Optional[Any]:
+    if not check_on_startup_enabled:
+        preserved = _normalize_interval_input(str(existing_interval))
+        if preserved is not None:
+            return preserved
+        return DEFAULT_CONFIG["check_interval"]
+
+    interval_value = custom_text if selected_value == CUSTOM_INTERVAL_SENTINEL else str(selected_value)
+    return _normalize_interval_input(interval_value)
+
+
 def open_configuration_dialog(raw_config: Any) -> Optional[Dict[str, Any]]:
     from aqt import mw
     from aqt.qt import (
@@ -296,9 +312,14 @@ def open_configuration_dialog(raw_config: Any) -> Optional[Dict[str, Any]]:
     result: Dict[str, Any] = {}
 
     def on_accept() -> None:
+        startup_enabled = bool(check_on_startup.isChecked())
         selected = interval_combo.currentData()
-        interval_value = custom_interval.text() if selected == CUSTOM_INTERVAL_SENTINEL else str(selected)
-        parsed_interval = _normalize_interval_input(interval_value)
+        parsed_interval = _resolve_interval_for_save(
+            startup_enabled,
+            selected,
+            custom_interval.text(),
+            config.get("check_interval", DEFAULT_CONFIG["check_interval"]),
+        )
         if parsed_interval is None:
             error_label.setText(
                 "Invalid interval. Use startup, never, <N><s|m|h|d>, or a number interpreted as days."
@@ -311,7 +332,7 @@ def open_configuration_dialog(raw_config: Any) -> Optional[Dict[str, Any]]:
 
         updated = dict(config)
         updated.pop("check_interval_days", None)
-        updated["check_on_startup"] = bool(check_on_startup.isChecked())
+        updated["check_on_startup"] = startup_enabled
         updated["check_interval"] = parsed_interval
         updated["download_page_url"] = url
 

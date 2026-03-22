@@ -106,6 +106,33 @@ class FakeMw:
 
 
 class UITests(unittest.TestCase):
+    def test_resolve_interval_for_save_preserves_existing_when_disabled(self):
+        value = ui._resolve_interval_for_save(
+            check_on_startup_enabled=False,
+            selected_value=ui.CUSTOM_INTERVAL_SENTINEL,
+            custom_text="",
+            existing_interval="7d",
+        )
+        self.assertEqual(value, "7d")
+
+    def test_resolve_interval_for_save_falls_back_to_startup_when_disabled_and_invalid(self):
+        value = ui._resolve_interval_for_save(
+            check_on_startup_enabled=False,
+            selected_value=ui.CUSTOM_INTERVAL_SENTINEL,
+            custom_text="",
+            existing_interval="not-valid",
+        )
+        self.assertEqual(value, "startup")
+
+    def test_resolve_interval_for_save_validates_custom_when_enabled(self):
+        value = ui._resolve_interval_for_save(
+            check_on_startup_enabled=True,
+            selected_value=ui.CUSTOM_INTERVAL_SENTINEL,
+            custom_text="5h",
+            existing_interval="startup",
+        )
+        self.assertEqual(value, "5h")
+
     def test_interval_presets_match_requested_options(self):
         self.assertEqual(
             ui.INTERVAL_PRESETS,
